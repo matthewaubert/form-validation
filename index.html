@@ -30,12 +30,26 @@
     </div>
     <div>
       <label for="pwd">Password</label>
-      <input type="password" id="pwd" required>
+      <!-- At least 1 digit, lowercase char, uppercase char, special char; 8-32 chars -->
+      <input
+        type="password"
+        id="pwd"
+        minlength="8"
+        maxlength="32"
+        pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$"
+        required>
       <span class="error" aria-live="polite"></span>
     </div>
     <div>
       <label for="pwd-confirm">Confirm password</label>
-      <input type="password" id="pwd-confirm" required>
+      <!-- At least 1 digit, lowercase char, uppercase char, special char; 8-32 chars -->
+      <input
+        type="password"
+        id="pwd"
+        minlength="8"
+        maxlength="32"
+        pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$"
+        required>
       <span class="error" aria-live="polite"></span>
     </div>
     <button type="submit" class="submit">Submit</button>
