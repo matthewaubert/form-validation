@@ -1,6 +1,6 @@
 # Form Validation With JavaScript
 
-This repo was built as part of The Odin Project: JavaScript course in order to practice what I've learned about form validation using JavaScript using the Constraint Validation API.
+This project was built as part of The Odin Project: JavaScript course in order to practice what I've learned about form validation using JavaScript.
 
 ## Understand the Problem
 
@@ -12,11 +12,17 @@ The form will not actually submit, but will give an error message if the user at
 
 1. Set up blank HTML doc
 
-1. Consider how to set up the different form elements and their accompanying validators.
+1. Consider how to set up the different form elements and their accompanying validators
+   - What fields will I need?
+     - email - input: email
+     - country - select w/ options
+     - zip code - input: text
+     - password - input: password
+     - password confirm - input: password
    - What functions will I need?
      - checkInput: check if field input is valid; show or remove error message as appropriate
      - showError: show error message next to invalid field
-     - 
+     - checkSubmission: check if all fields are valid - if so, give user high-five; if not, show error
    - What objects will I need?
      - errorMessage obj correlating field with its appropriate message
 
@@ -26,4 +32,4 @@ The form will not actually submit, but will give an error message if the user at
 
 1. Test out all possible cases
 
-1. Style validations with CSS using the :valid and :invalid pseudo-classes.
+1. Style validations with CSS using the :valid and :invalid pseudo-classes
