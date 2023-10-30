@@ -19,6 +19,14 @@ The form will not actually submit, but will give an error message if the user at
      - zip code - input: text
      - password - input: password
      - password confirm - input: password
+   - What will I need to check live in each field?
+     - email - whether it matches the email pattern
+     - country - whether it matches one of the possible options
+     - zip - whether it matches the regex pattern for its relevant country
+     - password
+       - whether it matches the password regex
+       - whether it's too short
+       - whether it's too long
    - What functions will I need?
      - checkInput: check if field input is valid; show or remove error message as appropriate
      - showError: show error message next to invalid field
