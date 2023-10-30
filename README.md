@@ -27,8 +27,9 @@ The form will not actually submit, but will give an error message if the user at
        - whether it matches the password regex
        - whether it's too short
        - whether it's too long
+     - password confirmation - whether it matches the password input
    - What functions will I need?
-     - checkInput: check if field input is valid; show or remove error message as appropriate
+     - checkInput: check if field input is valid; show or remove error message as appropriate. Perhaps separate function per input??
      - showError: show error message next to invalid field
      - checkSubmission: check if all fields are valid - if so, give user high-five; if not, show error
    - What objects will I need?
