@@ -59,12 +59,13 @@ const checkInput = {
     // define regex pattern for each country
     const constraints = {
       us: /^\d{5}$/,
-      ch: /^(CH-)?\\d{4}$/,
-      fr: /^(F-)?\\d{5}$/,
-      de: /^(D-)?\\d{5}$/,
-      nl: /^(NL-)?\\d{4}\\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$/
+      ch: /^(CH-)?\d{4}$/,
+      fr: /^(F-)?\d{5}$/,
+      de: /^(D-)?\d{5}$/,
+      nl: /^(NL-)?\d{4}\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$/
     };
 
+    console.log(formFields.country.value, this.value);
     // check if matches regex pattern for its relevant country
     if (constraints[formFields.country.value].test(this.value)) {
       removeError(this);
@@ -123,7 +124,7 @@ const checkInput = {
 };
 
 function touch() {
-  console.log('touched!');
+  // console.log('touched!');
   this.classList.add('touched');
 }
 
@@ -155,13 +156,9 @@ function checkSubmission(e) {
   let fieldsAreValid = true;
   // iterate over fields
   for (const field in formFields) {
-    touch.call(formFields[field]);
-    // if invalid
-    if (!formFields[field].validity.valid) {
-      // display error message
-      checkInput[field].call(formFields[field]);
-      fieldsAreValid = false;
-    }
+    touch.call(formFields[field]); // add "touched" class
+    checkInput[field].call(formFields[field]); // check field
+    if (!formFields[field].validity.valid) fieldsAreValid = false;
   }
   
   // if all fields are valid, give high five
