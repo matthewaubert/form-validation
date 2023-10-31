@@ -30,14 +30,14 @@ const checkInput = {
     // define error messages
     const errorMsg = {
       empty: 'You must select a country',
-      invalid: '',
+      invalid: 'Valid country codes are: us, ch, fr, de, nl',
     };
     // check if one of 5 valid countries
     const validCountries = ['us', 'ch', 'fr', 'de', 'nl'];
     if (validCountries.includes(this.value)) {
       removeError(this);
     } else {
-      showError(this);
+      showError(this, errorMsg.invalid);
     }
     // check if empty
     checkEmpty(this, errorMsg.empty);
