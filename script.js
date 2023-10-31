@@ -49,19 +49,24 @@ const checkInput = {
       invalid: '',
       us: 'U.S. ZIP codes must have exactly 5 digits',
       ch: 'Switzerland ZIP codes must have exactly 4 digits: e.g. CH-1950 or 1950',
-      fr: 'France ZIPs must have exactly 5 digits: e.g. F-75012 or 75012',
-      de: 'Germany ZIPs must have exactly 5 digits: e.g. D-12345 or 12345',
-      nl: 'Netherland ZIPs must have exactly 4 digits, followed by 2 letters except SA, SD and SS'
+      fr: 'France ZIP codes must have exactly 5 digits: e.g. F-75012 or 75012',
+      de: 'Germany ZIP codes must have exactly 5 digits: e.g. D-12345 or 12345',
+      nl: 'Netherland ZIP codes must have exactly 4 digits, followed by 2 letters except SA, SD and SS'
     };
     // define regex pattern for each country
     const constraints = {
-      us: 'd{5}$',
-      ch: '^(CH-)?\\d{4}$',
-      fr: '^(F-)?\\d{5}$',
-      de: '^(D-)?\\d{5}$',
-      nl: '^(NL-)?\\d{4}\\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$'
+      us: /^\d{5}$/,
+      ch: /^(CH-)?\\d{4}$/,
+      fr: /^(F-)?\\d{5}$/,
+      de: /^(D-)?\\d{5}$/,
+      nl: /^(NL-)?\\d{4}\\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$/
     };
     // check if matches regex pattern for its relevant country
+    if (constraints[formFields.country.value].test(this.value)) {
+      removeError(this);
+    } else {
+      showError(this, errorMsg[formFields.country.value]);
+    }
     // check if empty
     checkEmpty(this, errorMsg.empty);
   },
@@ -71,9 +76,9 @@ const checkInput = {
       empty: 'You must enter a password',
       invalid: '',
     };
-    // check if matches password regex
     // check if too short
     // check if too long
+    // check if matches password regex
     // check if empty
     checkEmpty(this, errorMsg.empty);
   },
