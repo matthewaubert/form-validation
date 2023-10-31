@@ -17,12 +17,12 @@ const checkInput = {
       invalid: 'You must enter a valid email address',
     };
 
-    // if field input is valid email address, remove error message
-    if (this.validity.valid) {
-      removeError(this);
-    // if still an error, show error
-    } else {
+    // if not a valid email address, show error
+    if (this.validity.typeMismatch) {
       showError(this, errorMsg.invalid);
+    // if field input is valid email address, remove error message
+    } else {
+      removeError(this);
     }
 
     // check if empty
@@ -34,7 +34,7 @@ const checkInput = {
       empty: 'You must select a country',
       invalid: 'Valid country codes are: us, ch, fr, de, nl',
     };
-    
+
     // check if one of 5 valid countries
     const validCountries = ['us', 'ch', 'fr', 'de', 'nl'];
     if (validCountries.includes(this.value)) {
@@ -50,7 +50,6 @@ const checkInput = {
     // define error messages for each country
     const errorMsg = {
       empty: 'You must enter a ZIP code',
-      invalid: '',
       us: 'U.S. ZIP codes must have exactly 5 digits',
       ch: 'Switzerland ZIP codes must have exactly 4 digits: e.g. CH-1950 or 1950',
       fr: 'France ZIP codes must have exactly 5 digits: e.g. F-75012 or 75012',
@@ -135,14 +134,41 @@ function checkEmpty(field, errorMsg) {
 // function to display error message
 function showError(field, errorMsg) {
   field.nextElementSibling.textContent = errorMsg;
+  field.setCustomValidity(errorMsg);
 }
 
+// reset content of error message
 function removeError(field) {
-  field.nextElementSibling.textContent = ''; // reset content of message
+  field.nextElementSibling.textContent = '';
+  field.setCustomValidity('');
+}
+
+// function to validate fields before allowing submission
+function checkSubmission(e) {
+  // prevent form submission
+  e.preventDefault();
+  let fieldsAreValid = true;
+  // iterate over fields
+  for (const field in formFields) {
+    // console.log(formFields[field].validity.valid);
+    // if invalid
+    if (!formFields[field].validity.valid) {
+      // display error message
+      checkInput[field].call(formFields[field]);
+      fieldsAreValid = false;
+    }
+  }
+  
+  // if all fields are valid, give high five
+  if (fieldsAreValid) giveHighFive();
+}
+
+function giveHighFive() {
+  alert('High five!');
 }
 
 // add event listeners
 for (const field in formFields) {
   formFields[field].addEventListener('change', checkInput[field]);
 }
-// form.addEventListener('submit', checkSubmission);
+form.addEventListener('submit', checkSubmission);
