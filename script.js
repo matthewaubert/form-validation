@@ -65,7 +65,6 @@ const checkInput = {
       nl: /^(NL-)?\d{4}\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$/
     };
 
-    console.log(formFields.country.value, this.value);
     // check if matches regex pattern for its relevant country
     if (constraints[formFields.country.value].test(this.value)) {
       removeError(this);
@@ -86,7 +85,6 @@ const checkInput = {
     };
     const constraint = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[.;:!@#$%^&*_=+-]).{8,32}$/;
 
-    // console.log(this.value);
     // check if too short
     if (this.validity.tooShort) {
       showError(this, errorMsg.tooShort);
@@ -123,21 +121,19 @@ const checkInput = {
   }
 };
 
+// add "touched" class to element
 function touch() {
-  // console.log('touched!');
   this.classList.add('touched');
 }
 
-// function to check if field is empty and show appropriate error message
+// check if field is empty and show appropriate error message
 function checkEmpty(field, errorMsg) {
-  // console.log(errorMsg);
-  // if field is empty, display error message
   if (field.validity.valueMissing) {
     showError(field, errorMsg);
   }
 }
 
-// function to display error message
+// display error message
 function showError(field, errorMsg) {
   field.nextElementSibling.textContent = errorMsg;
   field.setCustomValidity(errorMsg);
@@ -149,7 +145,7 @@ function removeError(field) {
   field.setCustomValidity('');
 }
 
-// function to validate fields before allowing submission
+// validate fields before allowing submission
 function checkSubmission(e) {
   // prevent form submission
   e.preventDefault();
