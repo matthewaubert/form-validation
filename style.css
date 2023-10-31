@@ -20,7 +20,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  padding-top: 2rem;
+  margin-top: 2rem;
   width: 350px;
 }
 
@@ -31,9 +31,10 @@ form > div {
 }
 
 input, select, button {
-  font-size: 1.0rem;
-  border: 1px solid black;
+  border: 1px solid #1F2937;
   border-radius: 5px;
+  color: 1px solid #1F2937;
+  font-size: 1.0rem;
   padding: 0.2rem;
 }
 
@@ -41,9 +42,18 @@ button {
   padding: 0.4rem;
 }
 
-/* .touched:required:invalid {
+button:hover {
+  cursor: pointer;
+  filter: brightness(95%);
+}
+
+.touched:required:valid {
+  border: 1px solid #1F2937;
+}
+
+.touched:required:invalid {
   border: 1px solid red;
-} */
+}
 
 label {
   font-size: 1.0rem;

@@ -122,6 +122,11 @@ const checkInput = {
   }
 };
 
+function touch() {
+  console.log('touched!');
+  this.classList.add('touched');
+}
+
 // function to check if field is empty and show appropriate error message
 function checkEmpty(field, errorMsg) {
   // console.log(errorMsg);
@@ -150,7 +155,7 @@ function checkSubmission(e) {
   let fieldsAreValid = true;
   // iterate over fields
   for (const field in formFields) {
-    // console.log(formFields[field].validity.valid);
+    touch.call(formFields[field]);
     // if invalid
     if (!formFields[field].validity.valid) {
       // display error message
@@ -170,5 +175,6 @@ function giveHighFive() {
 // add event listeners
 for (const field in formFields) {
   formFields[field].addEventListener('change', checkInput[field]);
+  formFields[field].addEventListener('change', touch); // add "touched" class on change
 }
 form.addEventListener('submit', checkSubmission);
