@@ -16,6 +16,7 @@ const checkInput = {
       empty: 'You must enter an email',
       invalid: 'You must enter a valid email address',
     };
+
     // if field input is valid email address, remove error message
     if (this.validity.valid) {
       removeError(this);
@@ -23,6 +24,7 @@ const checkInput = {
     } else {
       showError(this, errorMsg.invalid);
     }
+
     // check if empty
     checkEmpty(this, errorMsg.empty);
   },
@@ -32,6 +34,7 @@ const checkInput = {
       empty: 'You must select a country',
       invalid: 'Valid country codes are: us, ch, fr, de, nl',
     };
+    
     // check if one of 5 valid countries
     const validCountries = ['us', 'ch', 'fr', 'de', 'nl'];
     if (validCountries.includes(this.value)) {
@@ -39,6 +42,7 @@ const checkInput = {
     } else {
       showError(this, errorMsg.invalid);
     }
+
     // check if empty
     checkEmpty(this, errorMsg.empty);
   },
@@ -68,6 +72,7 @@ const checkInput = {
     } else {
       showError(this, errorMsg[formFields.country.value]);
     }
+
     // check if empty
     checkEmpty(this, errorMsg.empty);
   },
@@ -95,6 +100,7 @@ const checkInput = {
     } else {
       removeError(this);
     }
+
     // check if empty
     checkEmpty(this, errorMsg.empty);
   },
@@ -102,9 +108,16 @@ const checkInput = {
     // define error messages
     const errorMsg = {
       empty: 'You must confirm your password',
-      invalid: '',
+      invalid: 'Passwords do not match',
     };
+
     // check if matches password input
+    if (this.value === pwd.value) {
+      removeError(this);
+    } else {
+      showError(this, errorMsg.invalid);
+    }
+
     // check if empty
     checkEmpty(this, errorMsg.empty);
   }
