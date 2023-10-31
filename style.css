@@ -11,17 +11,12 @@ html, body {
   height: 100%;
 }
 
-body {
-  display: grid;
-  justify-content: center;
-}
-
 form {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  margin-top: 2rem;
-  width: 350px;
+  margin: 2rem auto;
+  width: min(350px, 80%);
 }
 
 form > div {
@@ -31,9 +26,9 @@ form > div {
 }
 
 input, select, button {
-  border: 1px solid #1F2937;
+  border: 1px solid black;
   border-radius: 5px;
-  color: 1px solid #1F2937;
+  color: 1px solid black;
   font-size: 1.0rem;
   padding: 0.2rem;
 }
@@ -48,7 +43,7 @@ button:hover {
 }
 
 .touched:required:valid {
-  border: 1px solid #1F2937;
+  border: 1px solid black;
 }
 
 .touched:required:invalid {
