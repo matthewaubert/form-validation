@@ -61,6 +61,7 @@ const checkInput = {
       de: /^(D-)?\\d{5}$/,
       nl: /^(NL-)?\\d{4}\\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$/
     };
+
     // check if matches regex pattern for its relevant country
     if (constraints[formFields.country.value].test(this.value)) {
       removeError(this);
@@ -74,11 +75,26 @@ const checkInput = {
     // define error messages
     const errorMsg = {
       empty: 'You must enter a password',
-      invalid: '',
+      tooShort: 'Password must be at least 8 characters',
+      tooLong: 'Password must be no more than 32 characters',
+      patternMismatch: 'Password must contain at least 1 digit, 1 lowercase character, 1 uppercase character, 1 special character, and your firstborn child',
     };
+    const constraint = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[.;:!@#$%^&*_=+-]).{8,32}$/;
+
+    // console.log(this.value);
     // check if too short
+    if (this.validity.tooShort) {
+      showError(this, errorMsg.tooShort);
     // check if too long
+    } else if (this.validity.tooLong) {
+      showError(this, errorMsg.tooLong);
     // check if matches password regex
+    } else if (!constraint.test(this.value)) {
+      showError(this, errorMsg.patternMismatch);
+    // else it's valid
+    } else {
+      removeError(this);
+    }
     // check if empty
     checkEmpty(this, errorMsg.empty);
   },
